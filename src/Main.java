@@ -3,6 +3,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        /* Use to run in CMD!!!
+        javac -classpath c:\Users\robin\IdeaProjects\myJDBC\lib\mysql-connector-java-8.0.28.jar *.java
+        java -classpath .;c:\Users\robin\IdeaProjects\myJDBC\lib\mysql-connector-java-8.0.28.jar Main
+         */
         Scanner input = new Scanner(System.in);
         Menus men = new Menus();
         MyJDBC con = new MyJDBC();
