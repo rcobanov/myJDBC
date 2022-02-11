@@ -18,7 +18,6 @@ public class MyJDBC {
     public ResultSet doQuery(String query) throws SQLException{
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(query);
-        //rs.getMetaData().getColumnCount();
         return rs;
     }
     public void updateQuery(String statement)  {
