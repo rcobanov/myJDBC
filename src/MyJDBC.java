@@ -10,7 +10,7 @@ public class MyJDBC {
             cont = DriverManager.getConnection("jdbc:mysql://localhost/hwstore", "root", "root");
 
         } catch (SQLException | ClassNotFoundException e){
-            System.out.println("Could not connect!");
+            System.out.println("Could not connect!!");
             e.printStackTrace();
         }
         return cont;
