@@ -17,10 +17,9 @@ public class MyJDBC {
     }
     public ResultSet doQuery(String query) throws SQLException{
         Statement st = con.createStatement();
-        ResultSet rs = st.executeQuery(query);
-        return rs;
+        return st.executeQuery(query);
     }
-    public void updateQuery(String statement)  {
+    public void updateQuery(String statement){
         try{
             Statement st = con.createStatement();
             st.executeUpdate(statement);
