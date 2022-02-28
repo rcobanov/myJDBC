@@ -11,7 +11,7 @@ public class Main {
         Menus men = new Menus();
         MyJDBC con = new MyJDBC();
         men.printMainMenu();
-        int choice = input.nextInt();
+        int choice = Integer.parseInt(input.nextLine());
         boolean keepGoing = true;
         while (keepGoing){
             try{
@@ -19,7 +19,7 @@ public class Main {
                     case 1:
                         //when submenu 1 (fetch information) is selected:
                         men.printFetchMenu();
-                        int subchoicefetch = input.nextInt();
+                        int subchoicefetch = Integer.parseInt(input.nextLine());
                         switch(subchoicefetch) {
                             case 1:
                                 con.getAllParts();
@@ -27,7 +27,7 @@ public class Main {
                             case 2:
                                 System.out.println("Search for a product description. ");
                                 System.out.println("It is possible to search for keywords(part of description), such as SCREW");
-                                String keyword = input.next();
+                                String keyword = input.nextLine();
                                 con.searchForProducts(keyword);
                                 break;
                             case 3:
@@ -35,7 +35,7 @@ public class Main {
                                 break;
                             case 4:
                                 System.out.println("Search for an order number.");
-                                int orderNo = input.nextInt();
+                                int orderNo = Integer.parseInt(input.nextLine());
                                 con.searchPurchaseOrderLines(orderNo);
                                 break;
                             case 5:
@@ -43,7 +43,7 @@ public class Main {
                                 break;
                             case 6:
                                 System.out.println("Search for an order number");
-                                int custOrderNo = input.nextInt();
+                                int custOrderNo = Integer.parseInt(input.nextLine());
                                 con.searchCustomerOrderLines(custOrderNo);
                                 break;
                             case 7:
@@ -51,37 +51,41 @@ public class Main {
                                 break;
                             case 9:
                                 men.printMainMenu();
-                                choice = input.nextInt();
+                                choice = Integer.parseInt(input.nextLine());
                                 break;
                         }
                         break;
                     case 2:
                         // when submenu 2 (add information) is selected:
                         men.printAddMenu();
-                        int subchoiceupdate = input.nextInt();
+                        int subchoiceupdate = Integer.parseInt(input.nextLine());
                         switch(subchoiceupdate){
                             case 1:
-                                System.out.println("Enter a product number");
-                                int prodNo = Integer.parseInt(input.next());
-                                String prodDesc = input.next();
-                                double purchasePrice = Integer.parseInt(input.next());
-                                int qtyInStock = Integer.parseInt(input.next());
-                                int suppId = Integer.parseInt(input.next());
+                                System.out.println("Enter product number");
+                                int prodNo = Integer.parseInt(input.nextLine());
+                                System.out.println("Enter Product Description:");
+                                String prodDesc = input.nextLine();
+                                System.out.println("Enter Purchase price");
+                                double purchasePrice = Integer.parseInt(input.nextLine());
+                                System.out.println("How much quantity do we have in stock?");
+                                int qtyInStock = Integer.parseInt(input.nextLine());
+                                System.out.println("Which Supplier do we buy this from?");
+                                int suppId = Integer.parseInt(input.nextLine());
                                 con.addProduct(prodNo, prodDesc, purchasePrice, qtyInStock, suppId);
                                 break;
                             case 2:
                                 System.out.println("Enter invoice number to delete: ");
-                                int delInvoiceNo = input.nextInt();
+                                int delInvoiceNo = Integer.parseInt(input.nextLine());;
                                 con.deleteUnpaidInvoice(delInvoiceNo);
                                 break;
                             case 3:
                                 System.out.println("Enter invoice number to update: ");
-                                int invoiceNo = input.nextInt();
+                                int invoiceNo = Integer.parseInt(input.nextLine());
                                 con.updateInvoiceStatus(invoiceNo);
                                 break;
                             case 9:
                                 men.printMainMenu();
-                                choice = input.nextInt();
+                                choice = Integer.parseInt(input.nextLine());
                                 break;
                         }
                         break;

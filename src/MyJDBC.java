@@ -4,16 +4,15 @@ public class MyJDBC {
     private Connection con = getConnected();
 
     public Connection getConnected(){
-        Connection cont = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            cont = DriverManager.getConnection("jdbc:mysql://localhost/hwstore", "root", "root");
-
+            return DriverManager.getConnection("jdbc:mysql://localhost/hwstore", "root", "root");
         } catch (SQLException | ClassNotFoundException e){
-            System.out.println("Could not connect!!");
+            System.out.println("Could not connect!");
             e.printStackTrace();
+            return null;
         }
-        return cont;
+
     }
     public ResultSet doQuery(String query) throws SQLException{
         Statement st = con.createStatement();
@@ -26,11 +25,10 @@ public class MyJDBC {
         } catch (SQLException e){
             e.printStackTrace();
         }
-
     }
 
     public void getAllParts() throws SQLException {
-        ResultSet resu = doQuery("select * from product");
+        ResultSet resu = doQuery("select * from product p, purchase_product pp where p.product_no = pp.product_no");
         System.out.printf("Product No | Product Description             | Qty in Stock   | Purchase Price   | Supplier%n");
         while (resu.next()) {
             System.out.printf("%-11s| %-32s| %-15s| %-17s| %s%n", resu.getString("product_no"), resu.getString("product_desc")
@@ -40,7 +38,7 @@ public class MyJDBC {
 
     }
     public void searchForProducts(String keyword) throws SQLException {
-        ResultSet resu = doQuery("select * from product where product_desc like '%" + keyword + "%'");
+        ResultSet resu = doQuery("select * from product p, purchase_product pp where p.product_no = pp.product_no and product_desc like '%" + keyword + "%'");
         System.out.printf("Product No | Product Description             | Qty in Stock   | Purchase Price   | Supplier%n");
         while (resu.next()) {
             System.out.printf("%-11s| %-32s| %-15s| %-17s| %s%n", resu.getString("product_no"), resu.getString("product_desc")
